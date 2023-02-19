@@ -1,12 +1,27 @@
 import requests
 
-API_key = "a70562b06dd8986413ddb15946b19c92"
+API_Key = "a70562b06dd8986413ddb15946b19c92"
 
-URL = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=a70562b06dd8986413ddb15946b19c92"
+location_dict = {
+    "Lake_District": [54.4609, -3.0886],
+    "Corfe_Castle": [50.6395, -2.0566],
+    "Cotswolds": [51.8330, -1.8433],
+    "Cambridge": [52.2053, 0.1218],
+    "Bristol": [51.4545, -2.5879],
+    "Oxford": [51.7520, -1.2577],
+    "Norwich": [52.6309, 1.2974],
+    "Stone_Henge": [51.1789, -1.8262],
+    "Watergate_Bay": [50.4429, -5.0553],
+    "Birmingham": [52.4862, -1.8904]
+}
 
-URL_LL = "https://api.openweathermap.org/data/2.5/weather?lat=54.4609&lon=3.0886&appid=a70562b06dd8986413ddb15946b19c92"
+print(location_dict["Oxford"][1])
 
-res = requests.get(url=URL_LL)
+URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_Key}"
+
+
+
+res = requests.get(url=URL)
 
 print(res)
 print(res.headers)
