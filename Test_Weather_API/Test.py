@@ -1,4 +1,5 @@
 import requests
+import json
 
 # Create dictionary of location and lat, long (Done)
 
@@ -52,6 +53,17 @@ response = requests.get(url=URL)
 ## name
 
 # Get Extracts by converting from JSON to python
+
+jsonResponse = response.json()
+
+#Example 2
+print(jsonResponse)
+jsonObject = json.dumps(jsonResponse, indent=4)
+print(jsonObject)
+print(jsonResponse["name"])
+
+print("These are the listed info parameters: ")
+
 
 # Display to Console
 
