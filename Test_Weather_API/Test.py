@@ -1,5 +1,7 @@
 import requests
 
+# Create dictionary of location and lat, long (Done)
+
 API_Key = "a70562b06dd8986413ddb15946b19c92"
 
 location_dict = {
@@ -14,16 +16,47 @@ location_dict = {
     "Watergate_Bay": [50.4429, -5.0553],
     "Birmingham": [52.4862, -1.8904]
 }
-
-print(location_dict["Oxford"][1])
+lat = location_dict["Lake_District"][0]
+lon = location_dict["Lake_District"][1]
 
 URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_Key}"
 
+response = requests.get(url=URL)
 
+# Example Test
+#print(location_dict["Oxford"][1])
+#print(response)
+#print(response.headers)
+#print(response.text)
 
-res = requests.get(url=URL)
+# Identify Critical Weather Features needed to display for assignment
 
-print(res)
-print(res.headers)
-print(res.text)
-print(res)
+# co-ord
+## lat and long,
+
+# weather
+## main
+## description
+
+# main
+## temp
+## feel_like
+## temp_min
+## temp_max
+## humidity
+
+# wind
+## speed
+
+#sys
+## name
+
+# Get Extracts by converting from JSON to python
+
+# Display to Console
+
+# Create API calls depending on each feature
+
+# Create best route for the day call
+
+# Create best route for the future (if possible) call
