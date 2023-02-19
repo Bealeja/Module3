@@ -3,7 +3,9 @@ import json
 
 # Create dictionary of location and lat, long (Done)
 
-API_Key = "a70562b06dd8986413ddb15946b19c92"
+APIKey = "a70562b06dd8986413ddb15946b19c92"
+
+Units = "metric"
 
 location_dict = {
     "Lake_District": [54.4609, -3.0886],
@@ -17,10 +19,10 @@ location_dict = {
     "Watergate_Bay": [50.4429, -5.0553],
     "Birmingham": [52.4862, -1.8904]
 }
-lat = location_dict["Lake_District"][0]
-lon = location_dict["Lake_District"][1]
+Lat = location_dict["Lake_District"][0]
+Lon = location_dict["Lake_District"][1]
 
-URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_Key}"
+URL = f"https://api.openweathermap.org/data/2.5/weather?lat={Lat}&lon={Lon}&appid={APIKey}&units={Units}"
 
 response = requests.get(url=URL)
 
@@ -56,10 +58,9 @@ response = requests.get(url=URL)
 jsonResponse = response.json()
 
 # Example 2
-print(jsonResponse)
-jsonObject = json.dumps(jsonResponse, indent=4)
-print(jsonObject)
-print(jsonResponse["name"])
+#print(jsonResponse)
+#jsonObject = json.dumps(jsonResponse, indent=4)
+#print(jsonObject)
 
 print(" ")
 
@@ -71,13 +72,13 @@ print('Here is the information for the location you have specified: \n'
       f'Latitude: {jsonResponse["coord"]["lat"]}\n'
       f'Weather: {jsonResponse["weather"][0]["main"]}\n'
       f'Weather Description: {jsonResponse["weather"][0]["description"]}\n'
-      f'Temperature: {jsonResponse["main"]["temp"]}\n'
-      f'Feels Like: {jsonResponse["main"]["feels_like"]}\n'
-      f'Temp Min: {jsonResponse["main"]["temp_min"]}\n'
-      f'Temp Max: {jsonResponse["main"]["temp_max"]}\n'
-      f'Humidity: {jsonResponse["main"]["humidity"]}\n'
-      f'Wind Speed: {jsonResponse["wind"]["speed"]}\n'
-      f'Clouds: {jsonResponse["clouds"]["all"]}\n'
+      f'Temperature (Celcius): {jsonResponse["main"]["temp"]}\n'
+      f'Feels Like (Celcius): {jsonResponse["main"]["feels_like"]}\n'
+      f'Temp Min (Celcius): {jsonResponse["main"]["temp_min"]}\n'
+      f'Temp Max (Celcius): {jsonResponse["main"]["temp_max"]}\n'
+      f'Humidity: {jsonResponse["main"]["humidity"]}%\n'
+      f'Wind Speed (m/s): {jsonResponse["wind"]["speed"]}\n'
+      f'Clouds: {jsonResponse["clouds"]["all"]}%\n'
       )
 
 # Create API calls depending on each feature
