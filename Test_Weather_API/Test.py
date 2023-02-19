@@ -25,10 +25,10 @@ URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appi
 response = requests.get(url=URL)
 
 # Example Test
-#print(location_dict["Oxford"][1])
-#print(response)
-#print(response.headers)
-#print(response.text)
+# print(location_dict["Oxford"][1])
+# print(response)
+# print(response.headers)
+# print(response.text)
 
 # Identify Critical Weather Features needed to display for assignment
 
@@ -49,23 +49,36 @@ response = requests.get(url=URL)
 # wind
 ## speed
 
-#sys
+# sys
 ## name
 
-# Get Extracts by converting from JSON to python
-
+# Get Extracts by converting from JSON to python (Change of plan)
 jsonResponse = response.json()
 
-#Example 2
+# Example 2
 print(jsonResponse)
 jsonObject = json.dumps(jsonResponse, indent=4)
 print(jsonObject)
 print(jsonResponse["name"])
 
-print("These are the listed info parameters: ")
-
+print(" ")
 
 # Display to Console
+
+print('Here is the information for the location you have specified: \n'
+      f'Name of Location: {jsonResponse["name"]}\n'
+      f'Longitude: {jsonResponse["coord"]["lon"]}\n'
+      f'Latitude: {jsonResponse["coord"]["lat"]}\n'
+      f'Weather: {jsonResponse["weather"][0]["main"]}\n'
+      f'Weather Description: {jsonResponse["weather"][0]["description"]}\n'
+      f'Temperature: {jsonResponse["main"]["temp"]}\n'
+      f'Feels Like: {jsonResponse["main"]["feels_like"]}\n'
+      f'Temp Min: {jsonResponse["main"]["temp_min"]}\n'
+      f'Temp Max: {jsonResponse["main"]["temp_max"]}\n'
+      f'Humidity: {jsonResponse["main"]["humidity"]}\n'
+      f'Wind Speed: {jsonResponse["wind"]["speed"]}\n'
+      f'Clouds: {jsonResponse["clouds"]["all"]}\n'
+      )
 
 # Create API calls depending on each feature
 
