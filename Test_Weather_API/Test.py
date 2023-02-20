@@ -1,10 +1,8 @@
 import requests
 import json
 
-# Create dictionary of location and lat, long (Done)
-
+# Parameters for URL
 APIKey = "a70562b06dd8986413ddb15946b19c92"
-
 Units = "metric"
 
 location_dict = {
@@ -22,50 +20,15 @@ location_dict = {
 Lat = location_dict["Lake_District"][0]
 Lon = location_dict["Lake_District"][1]
 
+# API URL
 URL = f"https://api.openweathermap.org/data/2.5/weather?lat={Lat}&lon={Lon}&appid={APIKey}&units={Units}"
 
+# Request GET and Conversion to JSON
 response = requests.get(url=URL)
-
-# Example Test
-# print(location_dict["Oxford"][1])
-# print(response)
-# print(response.headers)
-# print(response.text)
-
-# Identify Critical Weather Features needed to display for assignment
-
-# co-ord
-## lat and long,
-
-# weather
-## main
-## description
-
-# main
-## temp
-## feel_like
-## temp_min
-## temp_max
-## humidity
-
-# wind
-## speed
-
-# sys
-## name
-
-# Get Extracts by converting from JSON to python (Change of plan)
 jsonResponse = response.json()
-
-# Example 2
-#print(jsonResponse)
-#jsonObject = json.dumps(jsonResponse, indent=4)
-#print(jsonObject)
-
 print(" ")
 
 # Display to Console
-
 print('Here is the information for the location you have specified: \n'
       f'Name of Location: {jsonResponse["name"]}\n'
       f'Longitude: {jsonResponse["coord"]["lon"]}\n'
@@ -82,7 +45,43 @@ print('Here is the information for the location you have specified: \n'
       )
 
 # Create API calls depending on each feature
+# Location Weather (with google image)
+# Item List
+# Best Path and duration of Journey
+# Google Map
 
 # Create best route for the day call
 
+# calculate: Weather, Feels like, Wind Speed, Clouds for all locations
+rating_dict = {
+
+}
+
+for key in location_dict:
+    Lat_dict = location_dict[str(key)][0]
+    Lon_dict = location_dict[str(key)][1]
+    url_dict = f"https://api.openweathermap.org/data/2.5/weather?lat={Lat_dict}&lon={Lon_dict}&appid={APIKey}&units={Units}"
+    response = requests.get(url=url_dict)
+    jsonResponse = response.json()
+    rating_dict[str(key)] = [jsonResponse["coord"]["lat"],
+                             jsonResponse["coord"]["lon"],
+                             jsonResponse["weather"][0]["description"],
+                             jsonResponse["main"]["feels_like"],
+                             jsonResponse["wind"]["speed"],
+                             ]
+
+print(rating_dict)
+# for key in locations dict
+    # get request latitude long values
+    # add name of dict location, lat, long, Weather, Feels like, Wind Speed, Clouds to an array, ranking = 0
+
+# Set Ideal Weather: Sunny, Feels like (23-26 degrees), Wind Speed < 5m/s, Clouds: <50%
+    # for key in new locations dict
+        # if value then + ranking
+
+# Rank locations based on each attribute that they contain
+# Rank locations on latitude longitude change
+
 # Create best route for the future (if possible) call
+
+# Create Google API call for the location and a calculation of the best path. Return the journey time
