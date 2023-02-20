@@ -1,5 +1,6 @@
 import requests
 import json
+import ee
 
 # Parameters for URL
 APIKey = "a70562b06dd8986413ddb15946b19c92"
