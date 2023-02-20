@@ -53,31 +53,33 @@ print('Here is the information for the location you have specified: \n'
 # Create best route for the day call
 
 # calculate: Weather, Feels like, Wind Speed, Clouds for all locations
-rating_dict = {
-
-}
+# for key in locations dict
+# get request latitude long values
+# add name of dict location, lat, long, Weather, Feels like, Wind Speed, Clouds to an array, ranking = 0
+rating_dict = {}
 
 for key in location_dict:
     Lat_dict = location_dict[str(key)][0]
     Lon_dict = location_dict[str(key)][1]
     url_dict = f"https://api.openweathermap.org/data/2.5/weather?lat={Lat_dict}&lon={Lon_dict}&appid={APIKey}&units={Units}"
+
     response = requests.get(url=url_dict)
     jsonResponse = response.json()
+
     rating_dict[str(key)] = [jsonResponse["coord"]["lat"],
                              jsonResponse["coord"]["lon"],
                              jsonResponse["weather"][0]["description"],
                              jsonResponse["main"]["feels_like"],
                              jsonResponse["wind"]["speed"],
+                             jsonResponse["clouds"]["all"]
                              ]
 
-print(rating_dict)
-# for key in locations dict
-    # get request latitude long values
-    # add name of dict location, lat, long, Weather, Feels like, Wind Speed, Clouds to an array, ranking = 0
+new_sorted_by_clouds = sorted(rating_dict.items(), key=lambda x: x[1][5])
+print(new_sorted_by_clouds)
 
 # Set Ideal Weather: Sunny, Feels like (23-26 degrees), Wind Speed < 5m/s, Clouds: <50%
-    # for key in new locations dict
-        # if value then + ranking
+# for key in new locations dict
+# if value then + ranking
 
 # Rank locations based on each attribute that they contain
 # Rank locations on latitude longitude change
