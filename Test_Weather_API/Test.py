@@ -23,6 +23,8 @@ Lon = location_dict["Lake_District"][1]
 # API URL
 URL = f"https://api.openweathermap.org/data/2.5/weather?lat={Lat}&lon={Lon}&appid={APIKey}&units={Units}"
 
+# FUNCTION 1: Produce Weather Data for a set location
+
 # Request GET and Conversion to JSON
 response = requests.get(url=URL)
 jsonResponse = response.json()
@@ -50,8 +52,9 @@ print('Here is the information for the location you have specified: \n'
 # Best Path and duration of Journey
 # Google Map
 
-# Create best route for the day call
+# FUNCTION 2: PRODUCE BEST ROUTE BASED ON WEATHER
 
+# Create best route for the day call
 # calculate: Weather, Feels like, Wind Speed, Clouds for all locations
 # for key in locations dict
 # get request latitude long values
@@ -74,16 +77,13 @@ for key in location_dict:
                              jsonResponse["clouds"]["all"]
                              ]
 
+new_sorted_by_lat_lon = sorted(rating_dict.items(), key=lambda x: x[1][0])
+print("Sorted by latitude: \n", new_sorted_by_lat_lon)
+print(" ")
 new_sorted_by_clouds = sorted(rating_dict.items(), key=lambda x: x[1][5])
-print(new_sorted_by_clouds)
-
-# Set Ideal Weather: Sunny, Feels like (23-26 degrees), Wind Speed < 5m/s, Clouds: <50%
-# for key in new locations dict
-# if value then + ranking
-
-# Rank locations based on each attribute that they contain
-# Rank locations on latitude longitude change
-
-# Create best route for the future (if possible) call
+print("Sorted by best weather: \n", new_sorted_by_clouds)
 
 # Create Google API call for the location and a calculation of the best path. Return the journey time
+
+
+
