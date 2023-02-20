@@ -1,4 +1,4 @@
-
+import pySimple
 import ee
 from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
@@ -74,3 +74,6 @@ response = session.post(
 image_content = response.content
 from IPython.display import Image
 Image(image_content)
+
+Landsat8 = ee.Image('LANDSAT/LC08/C01/T1_TOA/LC08_170052_20170108')\
+.select('B4', [''])
