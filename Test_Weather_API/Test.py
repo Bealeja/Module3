@@ -27,7 +27,7 @@ URL = f"https://api.openweathermap.org/data/2.5/weather?lat={Lat}&lon={Lon}&appi
 # FUNCTION 1: Produce Weather Data for a set location
 
 # Request GET and Conversion to JSON
-response = requests.get(url=URL)
+response = requests.get(url="https://api.openweathermap.org/data/2.5/weather?lat=51.752&lon=-1.2577&appid=a70562b06dd8986413ddb15946b19c92&units=metric")
 jsonResponse = response.json()
 print(" ")
 
